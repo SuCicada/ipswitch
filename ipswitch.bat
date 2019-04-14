@@ -1,72 +1,72 @@
-@echo off&color 1E&title IPµØÖ·¿ìËÙÇĞ»»Æ÷
-echo ©°©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©´
-echo £ü                                                        £ü
-echo £ü         ÇĞ»»ÍøÂç»·¾³£¬ÇëÊäÈëµ±Ç°ËùÔÚÎ»ÖÃ               ©¦
-echo £ü                                                        £ü
-echo ©¸©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¼
+@echo off&color 1E&title IPåœ°å€å¿«é€Ÿåˆ‡æ¢å™¨
+echo â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+echo ï½œ                                                        ï½œ
+echo ï½œ         åˆ‡æ¢ç½‘ç»œç¯å¢ƒï¼Œè¯·è¾“å…¥å½“å‰æ‰€åœ¨ä½ç½®               â”‚
+echo ï½œ                                                        ï½œ
+echo â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 >nul 2>&1 "%SYSTEMROOT%\system32\cacls.exe" "%SYSTEMROOT%\system32\config\system"
 
 :choice
 set choice=
-set /p choice=¡¾ÍâÍø¡¿ÇëÑ¡Ôñ1£¬¡¾ÄÚÍø¡¿ÇëÑ¡Ôñ2 :[1,2]?
+set /p choice=ã€å¤–ç½‘ã€‘è¯·é€‰æ‹©1ï¼Œã€å†…ç½‘ã€‘è¯·é€‰æ‹©2 :[1,2]?
 if %choice%==2 goto school_lan
-if %choice%==1 (goto lab_lan) else (echo ÊäÈë´íÎó£¬ÇëÖØĞÂÊäÈë&goto choice)
+if %choice%==1 (goto lab_lan) else (echo è¾“å…¥é”™è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥&goto choice)
 
 
 :lab_lan
-set eth="±¾µØÁ¬½Ó"
+set eth="æœ¬åœ°è¿æ¥"
 set ip=10.0.0.
 set netmask=255.255.255.0
 set gw=10.0.0.1
 set dns1=8.8.8.8
 set dns2=
 echo.
-echo ÇĞ»»µ½ÍâÍøÓĞÏß»·¾³
+echo åˆ‡æ¢åˆ°å¤–ç½‘æœ‰çº¿ç¯å¢ƒ
 echo.
 goto switch
 
 
 :school_lan
-set eth="±¾µØÁ¬½Ó"
+set eth="æœ¬åœ°è¿æ¥"
 set ip=10.90.6.
 set netmask=255.255.255.0
 set gw=10.90.6.254
 set dns1=202.207.208.8
 set dns2=202.99.192.68
 echo.
-echo ÇĞ»»µ½Ñ§Ğ£ÄÚÍø»·¾³
+echo åˆ‡æ¢åˆ°å­¦æ ¡å†…ç½‘ç¯å¢ƒ
 echo.
 goto switch
 
 :switch
 set code=
-set /p code= ÄãµÄIPÖ÷»úºÅ[3-254]£¿ %ip%
+set /p code= ä½ çš„IPä¸»æœºå·[3-254]ï¼Ÿ %ip%
 set "ip=%ip%%code%"
-echo ÕıÔÚÉèÖÃIPµØÖ· %ip%
+echo æ­£åœ¨è®¾ç½®IPåœ°å€ %ip%
 netsh interface ip set address %eth% static %ip% %netmask% %gw% 1
-echo ÕıÔÚÉèÖÃÊ×Ñ¡DNS·şÎñÆ÷ %dns1%
+echo æ­£åœ¨è®¾ç½®é¦–é€‰DNSæœåŠ¡å™¨ %dns1%
 netsh interface ip set dns %eth% static %dns1% register=PRIMARY validate=no
 if defined dns2 (
-    echo ÕıÔÚÉèÖÃ±¸ÓÃDNS·şÎñÆ÷ %dns2%
+    echo æ­£åœ¨è®¾ç½®å¤‡ç”¨DNSæœåŠ¡å™¨ %dns2%
     netsh interface ip add dns %eth% %dns2% index=2 validate=no
 )
 echo.
-echo ÄúµÄIPµØÖ·ÇĞ»»³É¹¦£¬µ±Ç°IPµØÖ·Îª%ip%
+echo æ‚¨çš„IPåœ°å€åˆ‡æ¢æˆåŠŸï¼Œå½“å‰IPåœ°å€ä¸º%ip%
 echo.
 goto end
 
 
 :public
-echo ÕıÔÚÉèÖÃIPµØÖ·Îª×Ô¶¯»ñµÃ
+echo æ­£åœ¨è®¾ç½®IPåœ°å€ä¸ºè‡ªåŠ¨è·å¾—
 netsh interface ip set address %eth% dhcp
-echo ÉèÖÃÊ×Ñ¡DNS·şÎñÆ÷Îª×Ô¶¯»ñµÃ
+echo è®¾ç½®é¦–é€‰DNSæœåŠ¡å™¨ä¸ºè‡ªåŠ¨è·å¾—
 netsh interface ip set dns %eth% dhcp
-echo   ÕıÔÚ×Ô¶¯»ñÈ¡IP£¬ÇëÉÔºî...
+echo   æ­£åœ¨è‡ªåŠ¨è·å–IPï¼Œè¯·ç¨ä¾¯...
 echo.
-for /L %%x in (1 1 10) do set /p gu=¡ö<nul&ping /n 2 127.1>nul
+for /L %%x in (1 1 10) do set /p gu=â– <nul&ping /n 2 127.1>nul
 echo 100%%
 echo.
-echo ÄúµÄIPµØÖ·½«ÇĞ»»³É¹¦,µ±Ç°IPµØÖ·Îª×Ô¶¯»ñÈ¡
+echo æ‚¨çš„IPåœ°å€å°†åˆ‡æ¢æˆåŠŸ,å½“å‰IPåœ°å€ä¸ºè‡ªåŠ¨è·å–
 echo.
 goto end
 
